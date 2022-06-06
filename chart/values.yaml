@@ -141,5 +141,6 @@ secretStoreCsiDriver:
 ingressNginx:
   enable: true
   rawValues:
-    extraArgs:
-      enable-ssl-passthrough: ""
+    controller:
+      extraArgs:
+        enable-ssl-passthrough: ""
