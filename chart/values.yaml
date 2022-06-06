@@ -143,4 +143,4 @@ ingressNginx:
   rawValues:
     controller:
       extraArgs:
-        enable-ssl-passthrough: ""
+        enable-ssl-passthrough: ''
