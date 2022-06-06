@@ -134,3 +134,6 @@ kubeStateMetrics:
 kubernetesDashboard:
   enable: false
   serviceAccountName:
+
+secretStoreCsiDriver:
+  enable: false
