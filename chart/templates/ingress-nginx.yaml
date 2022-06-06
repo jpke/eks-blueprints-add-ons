@@ -14,7 +14,7 @@ spec:
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-      {{- .Values.ingress-nginx.rawValues | trim | nindent 8 }}
+        {{- .Values.ingressNginx.rawValues | toYaml | trim | nindent 8 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: ingress-nginx
