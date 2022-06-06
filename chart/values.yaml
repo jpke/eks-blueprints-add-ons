@@ -137,3 +137,8 @@ kubernetesDashboard:
 
 secretStoreCsiDriver:
   enable: false
+
+ingress-nginx:
+  rawValues:
+    extraArgs:
+      enable-ssl-passthrough: ""
