@@ -144,3 +144,4 @@ ingressNginx:
     controller:
       extraArgs:
         enable-ssl-passthrough: false
+        default-ssl-certificate: "default/does-not-exist"
