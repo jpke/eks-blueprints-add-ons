@@ -142,6 +142,8 @@ ingressNginx:
   enable: true
   rawValues:
     controller:
+      labels:
+        test-label: helm-values-work
       extraArgs:
         enable-ssl-passthrough: false
         default-ssl-certificate: "default/does-not-exist"
