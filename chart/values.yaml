@@ -144,4 +144,4 @@ ingressNginx:
     ingress-nginx:
       controller:
         extraArgs:
-          enable-ssl-passthrough: false
+          enable-ssl-passthrough: ''
