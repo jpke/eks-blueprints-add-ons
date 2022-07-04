@@ -14,7 +14,8 @@ spec:
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        {{- .Values.rancher | toYaml | trim | nindent 8 }}
+        rancher:
+          {{- .Values.rancher | toYaml | trim | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: cattle-system
