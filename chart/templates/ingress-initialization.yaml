@@ -1,0 +1,35 @@
+{{- if and (.Values.ingressInitialization) (.Values.ingressInitialization.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-initialization
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io    
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.repoUrl }}
+    path: add-ons/ingress-initialization
+    targetRevision: {{ .Values.targetRevision }}
+    helm: 
+      parameters:
+      - name: email
+        value: {{ .Values.ingressInitialization.email }}
+      - name: http_tg_arn
+        value: {{ .Values.ingressInitialization.http_tg_arn }}
+      - name: https_tg_arn
+        value: {{ .Values.ingressInitialization.https_tg_arn }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ingress-nginx
+  syncPolicy:
+    automated:
+      prune: true    
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s 
+        factor: 2 
+        maxDuration: 1m  
+{{- end -}}
