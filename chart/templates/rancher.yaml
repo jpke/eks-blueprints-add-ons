@@ -1,0 +1,32 @@
+{{- if and (.Values.rancher) (.Values.rancher.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rancher 
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io    
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.repoUrl }}
+    path: add-ons/rancher
+    targetRevision: {{ .Values.targetRevision }}
+    helm:
+      values: |
+        {{- .Values.rancher | toYaml | trim | nindent 8 }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cattle-system
+  syncPolicy:
+    automated:
+      prune: true    
+    syncOptions:
+    - CreateNamespace=true  
+    retry:
+      limit: 1
+      backoff:
+        duration: 5s 
+        factor: 2 
+        maxDuration: 1m  
+{{- end -}}
