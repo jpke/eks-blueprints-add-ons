@@ -7,7 +7,7 @@ spec:
   serviceRef:
     name: ingress-nginx-controller
     port: 80
-  targetGroupARN: {{ .Values.http_tg_arn }}
+  targetGroupARN: "{{ .Values.http_tg_arn }}"
 ---
 apiVersion: elbv2.k8s.aws/v1beta1
 kind: TargetGroupBinding
@@ -18,4 +18,4 @@ spec:
   serviceRef:
     name: ingress-nginx-controller
     port: 443
-  targetGroupARN: {{ .Values.https_tg_arn }}
+  targetGroupARN: "{{ .Values.https_tg_arn }}"
