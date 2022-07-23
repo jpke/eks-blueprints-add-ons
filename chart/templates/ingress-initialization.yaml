@@ -25,7 +25,8 @@ spec:
     namespace: ingress-nginx
   syncPolicy:
     automated:
-      prune: true    
+      prune: true
+      selfHeal: true  
     retry:
       limit: 1
       backoff:
